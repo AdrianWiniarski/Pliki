@@ -6,14 +6,15 @@
 #include <time.h>
 
 void main(int argc, char* argv[]){ 
-  int pid,status,i, j, total, times, timee, time; 
+  int pid,status,i, j, total; 
+  time_t times, timee, time;
   char str[16];
- char str2[16];
+  char str2[16];
   int st, en;
   st = atoi(argv[1]);
   en = atoi(argv[2]);
   int ct = (int)((en - st)/atoi(argv[3]));
- times = ctime(NULL);
+ times = time(NULL);
  for(i=0; i<atoi(argv[3]); ++i){
   if((pid = fork()) == 0) { /* Proces potomny pot ---*/  
 	sprintf(str, "%d\0", st+(i*ct)); 
@@ -25,13 +26,14 @@ void main(int argc, char* argv[]){
 	 execl("./pot","pot", str, str2,NULL); 
   }   
  }
- timee = ctime(NULL);
- time = timee - times;
+
 total = 0;
  for(i=0; i<atoi(argv[3]); ++i){
       pid = wait(&status);
       printf("Proces %d zakończony status: %d\n",pid,status/256);
       total += (int)(status/256); 
  } 
+ timee = time(NULL);
+ time = timee - times;
  printf("liczb pierwszych w przedziale: %d\n czas: %d\n", total, time);
 } 
