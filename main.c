@@ -7,8 +7,8 @@
 
 void main(int argc, char* argv[]){ 
   int pid,status,i, j, total; 
-  time_t times, timee, time;
-  char str[16];
+  time_t times, timee, ttime;
+  char str[16];1
   char str2[16];
   int st, en;
   st = atoi(argv[1]);
@@ -34,6 +34,6 @@ total = 0;
       total += (int)(status/256); 
  } 
  timee = time(NULL);
- time = timee - times;
- printf("liczb pierwszych w przedziale: %d\n czas: %d\n", total, time);
+ ttime = timee - times;
+ printf("liczb pierwszych w przedziale: %d\n czas: %d\n", total, ttime);
 } 
